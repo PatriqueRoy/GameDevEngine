@@ -3,33 +3,35 @@
 #include <direct.h>
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "Initiate.h"
 #include <SFML/Graphics.hpp>
+
+using namespace std;
 
 
 int main() {
-	sf::RenderWindow window(sf::VideoMode(800, 600),
-		"Hello SFML", sf::Style::Default);
+	bool init = initEngine();
 
-	sf::Font font;
-	font.loadFromFile("C:/Windows/Fonts/Arial.ttf");
-
-	sf::Text text;
-	text.setFont(font);
-	text.setPosition(200, 200);
-	text.setString("Hello SFML");
-
-	while (window.isOpen())
-	{
-		sf::Event event;
-		while (window.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				window.close();
-		}
-		window.clear();
-		window.draw(text);
-		window.display();
+	if (!init) {
+		exit;
 	}
-	return 0;
+	else {
+		sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
+		sf::CircleShape shape(100.f);
+		shape.setFillColor(sf::Color::Green);
+
+		while (window.isOpen())
+		{
+			sf::Event event;
+			while (window.pollEvent(event))
+			{
+				if (event.type == sf::Event::Closed)
+					window.close();
+			}
+
+			window.clear();
+			window.draw(shape);
+			window.display();
+		}
+	}
 }
