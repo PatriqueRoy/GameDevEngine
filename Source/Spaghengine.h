@@ -4,20 +4,15 @@
 class Spaghengine
 {
 public:
-	void Start();
-	void Initialize();
-	void GameLoop();
-
-	Spaghengine(sf::RenderWindow& window);
-
-	sf::RenderWindow& _mainWindow;
-
+	static void Start();
+	static void Initialize();
 private:
 	static bool IsExiting();
+	static void GameLoop();
 	enum GameState {
 		Uninitialized, ShowingSplash, Paused,
 		ShowingMenu, Playing, Exiting
 	};
-
 	static GameState _gameState;
+	static sf::RenderWindow _mainWindow;
 };

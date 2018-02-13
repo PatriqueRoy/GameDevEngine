@@ -1,25 +1,32 @@
 #include "Spaghengine.h"
+#include "Initiate.h"
 #include <iostream>
 
-Spaghengine::GameState Spaghengine::_gameState = Spaghengine::Uninitialized;
 
-Spaghengine::Spaghengine(sf::RenderWindow& window) : _mainWindow(window)
-{
-}
+Spaghengine::GameState Spaghengine::_gameState = Spaghengine::Uninitialized;
+sf::RenderWindow Spaghengine::_mainWindow;
 
 void Spaghengine::Start(void)
 {
 	if (_gameState != Uninitialized)
 		return;
-	
+
+	_mainWindow.create(sf::VideoMode(1024,768,32),"GameName");
 	_gameState = Spaghengine::Playing;
 
-	_gameState = ShowingSplash;
+	while (!IsExiting())
+	{
+		GameLoop();
+	}
 }
-
 
 void Spaghengine::Initialize(void)
 {
+	bool init = initEngine();
+	if (!init) {
+		exit;
+	}
+	/*
 	sf::Texture texture;
 
 	if (texture.loadFromFile("theThing.png") != true) {
@@ -42,7 +49,7 @@ void Spaghengine::Initialize(void)
 			}
 
 		}
-	}
+	}*/
 }
 
 void Spaghengine::GameLoop(void) 
@@ -57,4 +64,8 @@ void Spaghengine::GameLoop(void)
 				_mainWindow.close();
 		}
 	}
+}
+
+bool Spaghengine::IsExiting() {
+	return false;
 }

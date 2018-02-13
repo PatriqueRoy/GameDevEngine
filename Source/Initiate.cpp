@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "Initiate.h"
-#include <SFML/Graphics.hpp>
 
 using namespace std;
 
@@ -120,6 +119,5 @@ bool initEngine() {
 	if (ReadCPUSpeed() < 2000) {
 		return false;
 	}
-	cout << "Computer Is ready to go" << endl;
 	return true;
 }
