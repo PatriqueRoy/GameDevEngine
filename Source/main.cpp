@@ -11,13 +11,13 @@ using namespace std;
 
 
 int main() {
-	Spaghengine main;
+	sf::RenderWindow window(sf::VideoMode(800, 450, 32), "GameName");
+
+	Spaghengine main(window);
 	main.Start();
-	//Spaghengine::Start();
+	main.Initialize();
+	main.GameLoop();
 
-
-
-	//Spaghengine::Initialize();
 	/*
 	bool init = initEngine();
 

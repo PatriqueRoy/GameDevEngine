@@ -1,35 +1,29 @@
 #include "Spaghengine.h"
+#include <iostream>
 
 Spaghengine::GameState Spaghengine::_gameState = Spaghengine::Uninitialized;
+
+Spaghengine::Spaghengine(sf::RenderWindow& window) : _mainWindow(window)
+{
+}
 
 void Spaghengine::Start(void)
 {
 	if (_gameState != Uninitialized)
 		return;
 	
-	_mainWindow.create(sf::VideoMode(1024, 768, 32), "GameName");
 	_gameState = Spaghengine::Playing;
-
-	while (_mainWindow.isOpen())
-	{
-		sf::Event event;
-		while (_mainWindow.pollEvent(event))
-		{
-			if (event.type == sf::Event::Closed)
-				_mainWindow.close();
-		}
-		_mainWindow.display();
-	}
 
 	_gameState = ShowingSplash;
 }
 
-/*
+
 void Spaghengine::Initialize(void)
 {
 	sf::Texture texture;
-	texture.loadFromFile("images/SplashScreen.png");
-	if (texture.loadFromFile("images/SplashScreen.png") != true) {
+
+	if (texture.loadFromFile("theThing.png") != true) {
+		std::cout << "Bad" << std::endl;
 		return;
 	}
 
@@ -38,8 +32,10 @@ void Spaghengine::Initialize(void)
 	_mainWindow.draw(sprite);
 	_mainWindow.display();
 	
+	_gameState = ShowingSplash;
+
 	sf::Event event;
-	while (_gameState != ShowingSplash) {
+	while (_gameState == ShowingSplash) {
 		while (_mainWindow.pollEvent(event)) {
 			if (event.type == sf::Event::EventType::KeyPressed || event.type == sf::Event::EventType::MouseButtonPressed || event.type == sf::Event::EventType::Closed) {
 				return;
@@ -47,4 +43,18 @@ void Spaghengine::Initialize(void)
 
 		}
 	}
-}*/
+}
+
+void Spaghengine::GameLoop(void) 
+{
+	std::cout << "continued" << std::endl;
+	while (_mainWindow.isOpen())
+	{
+		sf::Event event;
+		while (_mainWindow.pollEvent(event))
+		{
+			if (event.type == sf::Event::Closed)
+				_mainWindow.close();
+		}
+	}
+}
