@@ -1,5 +1,7 @@
 ﻿C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(372,5): warning MSB8004: Intermediate Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Intermediate Directory.
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(373,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   main.cpp
-c:\users\patrique\documents\github\the-spaghengine\source\main.cpp(16): warning C4551: function call missing argument list
-  The Spaghengine.vcxproj -> C:\Users\Patrique\Documents\GitHub\The-Spaghengine\\Game\The SpaghengineWin32Debug\The SpaghengineWin32Debug.exe
+  Spaghengine.cpp
+  Generating Code...
+Spaghengine.obj : error LNK2001: unresolved external symbol "public: static class sf::RenderWindow Spaghengine::_mainWindow" (?_mainWindow@Spaghengine@@2VRenderWindow@sf@@A)
+C:\Users\Harrison\Documents\GitHub\The-Spaghengine\\Game\The SpaghengineWin32Debug\The SpaghengineWin32Debug.exe : fatal error LNK1120: 1 unresolved externals

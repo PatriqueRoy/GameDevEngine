@@ -21,9 +21,11 @@
   <ItemGroup>
     <ClCompile Include="..\Source\Initiate.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
+    <ClCompile Include="..\Source\Spaghengine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Initiate.h" />
+    <ClInclude Include="..\Source\Spaghengine.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

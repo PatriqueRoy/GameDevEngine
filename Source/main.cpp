@@ -5,11 +5,20 @@
 #include <stdlib.h>
 #include "Initiate.h"
 #include <SFML/Graphics.hpp>
+#include "Spaghengine.h"
 
 using namespace std;
 
 
 int main() {
+	Spaghengine main;
+	main.Start();
+	//Spaghengine::Start();
+
+
+
+	//Spaghengine::Initialize();
+	/*
 	bool init = initEngine();
 
 	if (!init) {
@@ -33,5 +42,5 @@ int main() {
 			window.draw(shape);
 			window.display();
 		}
-	}
+	}*/
 }
