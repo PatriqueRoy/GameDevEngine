@@ -26,10 +26,10 @@ void Spaghengine::Initialize(void)
 	if (!init) {
 		exit;
 	}
-	/*
+	
 	sf::Texture texture;
 
-	if (texture.loadFromFile("theThing.png") != true) {
+	if (texture.loadFromFile("Assets/theThing.png") != true) {
 		std::cout << "Bad" << std::endl;
 		return;
 	}
@@ -49,12 +49,11 @@ void Spaghengine::Initialize(void)
 			}
 
 		}
-	}*/
+	}
 }
 
 void Spaghengine::GameLoop(void) 
 {
-	std::cout << "continued" << std::endl;
 	while (_mainWindow.isOpen())
 	{
 		sf::Event event;

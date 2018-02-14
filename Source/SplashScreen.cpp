@@ -1,28 +1,28 @@
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
 #include "SplashScreen.h"
 #include "Spaghengine.h"
 
 void SplashScreen::Show(sf::RenderWindow & renderWindow) {
-	sf::Image image;
+	sf::Texture texture;
 
-	if (image.loadFromFile("images/SplashScreen.png") != true) {
+	if (texture.loadFromFile("theThing.png") != true) {
+		std::cout << "Bad" << std::endl;
 		return;
 	}
 
-	sf::Sprite sprite(image);
+	sf::Sprite sprite(texture);
 
-	renderWindow.draw(sprite);
-	renderWindow.display();
+	_mainWindow.draw(sprite);
+	_mainWindow.display();
+
+	_gameState = ShowingSplash;
 
 	sf::Event event;
-	while (_gameState != Spaghengine::Initialized) {
-		while (renderWindow.GetEvent(event)) {
-			if (event.Type == sf::Event::EventType::KeyPressed
-				|| event.Type == sf::Event::EventType::MouseButtonPressed
-				|| event.Type == sf::Event::EventType::Closed) {
+	while (_gameState == ShowingSplash) {
+		while (_mainWindow.pollEvent(event)) {
+			if (event.type == sf::Event::EventType::KeyPressed || event.type == sf::Event::EventType::MouseButtonPressed || event.type == sf::Event::EventType::Closed) {
 				return;
 			}
+
 		}
 	}
 }
