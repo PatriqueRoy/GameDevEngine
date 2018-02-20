@@ -22,10 +22,12 @@
     <ClCompile Include="..\Source\Initiate.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Spaghengine.cpp" />
+    <ClCompile Include="GameObject.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\Initiate.h" />
     <ClInclude Include="..\Source\Spaghengine.h" />
+    <ClInclude Include="GameObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
