@@ -24,7 +24,7 @@ void Spaghengine::Initialize(void)
 
 	sf::Sprite sprite(texture);
 
-	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
+	sf::RenderWindow* win = windowHandle::Instance()->getWindow();//this must be called in any function you wanna mess with the window in, creates a reference to the main window
 
 	win->draw(sprite);
 	win->display();
@@ -46,7 +46,7 @@ void Spaghengine::Start(void)
 {
 	sf::Texture texture;
 
-	if (texture.loadFromFile("thumb.png") != true) {
+	if (texture.loadFromFile("thumb.png") != true) {//TEMP to show changing out of splash screen
 		std::cout << "Bad Load" << std::endl;
 		return;
 	}
@@ -63,7 +63,6 @@ void Spaghengine::Start(void)
 	while (!IsExiting())
 	{
 		GameLoop();
-
 	}
 }
 

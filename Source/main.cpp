@@ -9,7 +9,7 @@
 
 using namespace std;
 
-windowHandle* windowHandle::s_pInstance = nullptr;
+windowHandle* windowHandle::s_pInstance = nullptr;//creating the instance of the window
 
 int main() {
 	Spaghengine::Initialize();
