@@ -13,6 +13,7 @@ public:
 	void Update(float msec);
 	void Awake();
 	void Start();
+	void LateUpdate(float msec);
 
 private:
 	std::map<int, GameObject*> objects;
