@@ -44,6 +44,20 @@ void Spaghengine::Initialize(void)
 
 void Spaghengine::Start(void)
 {
+	sf::Texture texture;
+
+	if (texture.loadFromFile("thumb.png") != true) {
+		std::cout << "Bad Load" << std::endl;
+		return;
+	}
+
+	sf::Sprite sprite(texture);
+
+	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
+
+	win->draw(sprite);
+	win->display();
+
 	_gameState = Spaghengine::Playing;
 
 	while (!IsExiting())
