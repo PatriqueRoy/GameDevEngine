@@ -9,10 +9,11 @@
 
 using namespace std;
 
+windowHandle* windowHandle::s_pInstance = nullptr;
 
 int main() {
-	Spaghengine::Start();
 	Spaghengine::Initialize();
-
-	return 0;
+	Spaghengine::Start();
+	
+	//return 0;
 }

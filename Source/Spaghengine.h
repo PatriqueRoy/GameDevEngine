@@ -1,11 +1,13 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
+#include "windowHandle.h"
 
 class Spaghengine
 {
 public:
 	static void Start();
 	static void Initialize();
+	
 private:
 	static bool IsExiting();
 	static void GameLoop();
@@ -14,5 +16,4 @@ private:
 		ShowingMenu, Playing, Exiting
 	};
 	static GameState _gameState;
-	static sf::RenderWindow _mainWindow;
 };

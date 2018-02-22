@@ -27,6 +27,7 @@
   <ItemGroup>
     <ClInclude Include="..\Source\Initiate.h" />
     <ClInclude Include="..\Source\Spaghengine.h" />
+    <ClInclude Include="..\Source\windowHandle.h" />
     <ClInclude Include="GameObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
