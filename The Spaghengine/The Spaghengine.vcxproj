@@ -19,16 +19,20 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\BaseComponent.cpp" />
+    <ClCompile Include="..\Source\GameObject.cpp" />
     <ClCompile Include="..\Source\Initiate.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
     <ClCompile Include="..\Source\Spaghengine.cpp" />
-    <ClCompile Include="GameObject.cpp" />
+    <ClCompile Include="..\Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\BaseComponent.h" />
+    <ClInclude Include="..\Source\GameObject.h" />
     <ClInclude Include="..\Source\Initiate.h" />
     <ClInclude Include="..\Source\Spaghengine.h" />
+    <ClInclude Include="..\Source\TransformComponent.h" />
     <ClInclude Include="..\Source\windowHandle.h" />
-    <ClInclude Include="GameObject.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
