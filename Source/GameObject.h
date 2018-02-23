@@ -34,10 +34,12 @@ class
 		void Start();
 
 		void AddComponent(BaseComponent* component);
+		TransformComponent Local_transform;
 
 	protected:	
 		GameObject * parent;
 		int uniqueID;
 		std::vector<GameObject*> children;
 		std::vector<BaseComponent*> components;
+		sf::Transform World_Transform;
 };

@@ -1,13 +1,14 @@
 #pragma once
 #include "BaseComponent.h"
+#include <SFML\Graphics\Transform.hpp>
 
-struct Vector3
+struct Vector2
 {
-	Vector3() : x(0.0f), y(0.0f), z(0.0f){}
+	Vector2() : x(0.0f), y(0.0f){}
 
-	Vector3(float _x, float _y, float _z) : x(_x), y(_y), z(_z) {}
+	Vector2(float _x, float _y) : x(_x), y(_y) {}
 
-	float x, y, z;
+	float x, y;
 };
 
 class TransformComponent : public BaseComponent {
@@ -17,12 +18,10 @@ public:
 	void Update();
 	void LateUpdate();
 
-	Vector3 GetPosition() { return t_position; }
-	Vector3 GetRotation() { return t_rotation; };
-	Vector3 GetScale() { return t_scale; };
+	Vector2 t_position;
+	float t_rotation;
+	Vector2 t_scale;
 
-protected:
-	Vector3 t_position;
-	Vector3 t_rotation;
-	Vector3 t_scale;
+	sf::Transform transform;
+	const float* matrix = transform.getMatrix();
 };

@@ -21,12 +21,12 @@ void GameObject::Update(
 	msec) {
 	if (parent) {
 		//This node has a parent...  
-		//worldTransform = parent->worldTransform* transform;
+		World_Transform = parent->World_Transform * Local_transform.transform;
 	}
 	else
 	{
 		//Root node, world transform is local transform!
-		//worldTransform = transform;
+		World_Transform = Local_transform.transform;
 	}
 	for(std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
 	{
