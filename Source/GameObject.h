@@ -8,10 +8,9 @@ class
 	GameObject
 {
 	public:
-		GameObject() {
-			parent = nullptr;
-		}
-		~GameObject(void);
+		GameObject(int ID) : uniqueID(ID), parent(NULL) {	}
+
+		int GetObjectID() const { return uniqueID; }
 			
 		void SetParent(GameObject& p) {parent = &p;}
 		bool checkForParent() 
@@ -29,12 +28,16 @@ class
 		}
 
 		void AddChild(GameObject* s);
-		virtual void Update(float msec);
+
+		void Update(float msec);
+		void Awake();
+		void Start();
 
 		void AddComponent(BaseComponent* component);
 
 	protected:	
-		GameObject* parent;
+		GameObject * parent;
+		int uniqueID;
 		std::vector<GameObject*> children;
 		std::vector<BaseComponent*> components;
 };
