@@ -16,9 +16,40 @@ void GameObject::AddComponent(BaseComponent* c) {
 	components.push_back(c);
 }
 
-void GameObject::Update(
-	float
-	msec) {
+void GameObject::Awake() {
+	if (parent) {
+		//This node has a parent...  
+		World_Transform = parent->World_Transform * Local_transform.transform;
+	}
+	else
+	{
+		//Root node, world transform is local transform!
+		World_Transform = Local_transform.transform;
+	}
+	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
+	{
+		(*i)->Awake();
+	}
+}
+
+void GameObject::Start() {
+	if (parent) {
+		//This node has a parent...  
+		World_Transform = parent->World_Transform * Local_transform.transform;
+	}
+	else
+	{
+		//Root node, world transform is local transform!
+		World_Transform = Local_transform.transform;
+	}
+	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
+	{
+		(*i)->Start();
+	}
+}
+
+
+void GameObject::Update(float msec) {
 	if (parent) {
 		//This node has a parent...  
 		World_Transform = parent->World_Transform * Local_transform.transform;
