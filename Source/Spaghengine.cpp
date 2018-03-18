@@ -3,7 +3,10 @@
 #include <iostream>
 
 Spaghengine::GameState Spaghengine::_gameState = Spaghengine::Uninitialized;
-
+float Spaghengine::currentTime = 0.0;
+float Spaghengine::deltaTime = 0.0;
+sf::Clock masterClock;
+sf::Clock deltaClock;
 
 void Spaghengine::Initialize(void)
 {
@@ -69,9 +72,18 @@ void Spaghengine::Start(void)
 void Spaghengine::GameLoop(void) 
 {
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
+	masterClock.restart();
 
 	while (win->isOpen())
 	{
+		//time since start of program
+		sf::Time elapsed = masterClock.getElapsedTime();
+		currentTime = elapsed.asSeconds();
+
+		//delta time (time between frames)
+		sf::Time dt = deltaClock.restart();
+		deltaTime = dt.asSeconds();
+
 		sf::Event event;
 		while (win->pollEvent(event))
 		{

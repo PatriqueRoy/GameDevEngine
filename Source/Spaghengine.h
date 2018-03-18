@@ -16,4 +16,6 @@ private:
 		ShowingMenu, Playing, Exiting
 	};
 	static GameState _gameState;
+	static float currentTime;
+	static float deltaTime;
 };
