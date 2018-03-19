@@ -19,19 +19,25 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\Source\AudioComponent.cpp" />
     <ClCompile Include="..\Source\BaseComponent.cpp" />
     <ClCompile Include="..\Source\GameObject.cpp" />
     <ClCompile Include="..\Source\GameObjectManager.cpp" />
     <ClCompile Include="..\Source\Initiate.cpp" />
     <ClCompile Include="..\Source\main.cpp" />
+    <ClCompile Include="..\Source\PhysicsEngine.cpp" />
+    <ClCompile Include="..\Source\PhysicsRigidbody.cpp" />
     <ClCompile Include="..\Source\Spaghengine.cpp" />
     <ClCompile Include="..\Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\Source\AudioComponent.h" />
     <ClInclude Include="..\Source\BaseComponent.h" />
     <ClInclude Include="..\Source\GameObject.h" />
     <ClInclude Include="..\Source\GameObjectManager.h" />
     <ClInclude Include="..\Source\Initiate.h" />
+    <ClInclude Include="..\Source\PhysicsEngine.h" />
+    <ClInclude Include="..\Source\PhysicsRigidbody.h" />
     <ClInclude Include="..\Source\Spaghengine.h" />
     <ClInclude Include="..\Source\TransformComponent.h" />
     <ClInclude Include="..\Source\windowHandle.h" />
