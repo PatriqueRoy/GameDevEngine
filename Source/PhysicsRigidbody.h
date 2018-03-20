@@ -2,7 +2,7 @@
 #include "TransformComponent.h"
 #include "PhysicsEngine.h"
 
-class PhysicsRigidbody {
+class PhysicsRigidbody :public TransformComponent {
 public:
 	float mass;
 	float bounciness;
@@ -23,6 +23,7 @@ public:
 	void SetAABB();
 	void Start();
 	void Integrate(float dT);
+	
 private:
 	Vector2 totalForces;
 	PhysicsEngine engine;

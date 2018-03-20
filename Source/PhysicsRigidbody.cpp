@@ -7,19 +7,19 @@ void PhysicsRigidbody::AddForce(Vector2 force)
 
 void PhysicsRigidbody::Stop()
 {
-	currentVelocity = Vector2(0.0f,0.0f);
-	totalForces = Vector2(0.0f,0.0f);
+	currentVelocity = Vector2();
+	totalForces = Vector2();
 }
 
 bool PhysicsRigidbody::IsGrounded()
 {
-	grounded = engine.IsGrounded('this');
+	grounded = engine.IsGrounded(this);
 	return grounded;
 }
 
 void PhysicsRigidbody::SetAABB()
 {
-	Bounds bound = new Bounds(new Vector2(0, 0), new Vector2(1, 1));
+	Bounds bound = new Bounds(new Vector2(), new Vector2(1, 1));
 	Renderer renderer = GetComponent<Renderer>();
 
 	if (renderer)
@@ -27,14 +27,14 @@ void PhysicsRigidbody::SetAABB()
 		bound = renderer.bounds;
 	}
 
-	aabb.bLeft = new Vector2(bound.center.x - bound.extents.x, bound.center.y - bound.extents.y);
-	aabb.tRight = new Vector2(bound.center.x + bound.extents.x, bound.center.y + bound.extents.y);
+	aabb.bLeft = Vector2(bound.center.x - bound.extents.x, bound.center.y - bound.extents.y);
+	aabb.tRight = Vector2(bound.center.x + bound.extents.x, bound.center.y + bound.extents.y);
 }
 
 void PhysicsRigidbody::Start()
 {
 	SetAABB();
-	engine = GameObject.FindWithTag("PhysicsEngine").GetComponent<PhysicsEngine>();
+	engine = PhysicsEngine;
 
 	engine.AddRigidBody(this);
 }
@@ -45,7 +45,7 @@ void PhysicsRigidbody::Integrate(float dT)
 		AddForce(gravity);
 	}
 	else {
-		if (Mathf.Abs(currentVelocity.y) < 0.05f) currentVelocity.y = 0;
+		if (std::abs(currentVelocity.y) < 0.05f) currentVelocity.y = 0;
 	}
 	///
 	///
@@ -53,14 +53,14 @@ void PhysicsRigidbody::Integrate(float dT)
 
 	Vector2 acceleration = totalForces / mass;
 	if (mass == 0)
-		acceleration = Vector2.zero;
+		acceleration = Vector2();
 
 	currentVelocity += acceleration * dT;
 
-	Vector2 temp = transform.position;
+	Vector2 temp = t_position;
 	temp += currentVelocity * dT;
-	transform.position = temp;
+	t_position = temp;
 	SetAABB();
 
-	totalForces = Vector2.zero;
+	totalForces = Vector2();
 }

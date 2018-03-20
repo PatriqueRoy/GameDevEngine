@@ -4,6 +4,8 @@
 #include <list>
 #include <map>
 #include <cmath>
+#include <algorithm>
+#include <numeric>
 
 
 class PhysicsEngine
