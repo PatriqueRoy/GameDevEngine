@@ -36,7 +36,17 @@
     <ClCompile Include="..\Source\GameObjectManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="AudioComponent.cpp">
+=======
+    <ClCompile Include="..\Source\AudioComponent.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PhysicsEngine.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Source\PhysicsRigidbody.cpp">
+>>>>>>> 921d3f7200b71c9ed76f4967fde950aa6cfbf001
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -62,7 +72,17 @@
     <ClInclude Include="..\Source\GameObjectManager.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="AudioComponent.h">
+=======
+    <ClInclude Include="..\Source\AudioComponent.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\PhysicsEngine.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\Source\PhysicsRigidbody.h">
+>>>>>>> 921d3f7200b71c9ed76f4967fde950aa6cfbf001
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
