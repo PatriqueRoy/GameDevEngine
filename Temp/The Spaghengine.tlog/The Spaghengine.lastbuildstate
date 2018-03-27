@@ -1,6 +1,2 @@
 #TargetFrameworkVersion=v4.0:PlatformToolSet=v141:EnableManagedIncrementalBuild=false:VCToolArchitecture=Native32Bit:WindowsTargetPlatformVersion=10.0.15063.0
-<<<<<<< HEAD
-Debug|Win32|C:\Users\Harrison\Documents\GitHub\The-Spaghengine\|
-=======
-Debug|Win32|C:\Users\Pendr\Documents\GitHub\The-Spaghengine\|
->>>>>>> c294457731fe0c82d8e555ab4a11d32e2157039d
+Debug|Win32|C:\Users\Tech\Documents\GitHub\The-Spaghengine\|

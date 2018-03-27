@@ -1,6 +1,7 @@
 #include "Spaghengine.h"
 #include "Initiate.h"
 #include <iostream>
+#include "TransformComponent.h"
 
 Spaghengine::GameState Spaghengine::_gameState = Spaghengine::Uninitialized;
 float Spaghengine::currentTime = 0.0;

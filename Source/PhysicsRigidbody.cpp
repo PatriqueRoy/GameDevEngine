@@ -1,5 +1,5 @@
 #include "PhysicsRigidbody.h"
-
+/*
 void PhysicsRigidbody::AddForce(Vector2 force)
 {
 	totalForces += force;
@@ -63,4 +63,4 @@ void PhysicsRigidbody::Integrate(float dT)
 	SetAABB();
 
 	totalForces = Vector2();
-}
+}*/

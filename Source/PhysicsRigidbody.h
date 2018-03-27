@@ -1,7 +1,7 @@
 #pragma once
 #include "TransformComponent.h"
 #include "PhysicsEngine.h"
-
+/*
 class PhysicsRigidbody :public TransformComponent {
 public:
 	float mass;
@@ -26,5 +26,5 @@ public:
 	
 private:
 	Vector2 totalForces;
-	PhysicsEngine engine;
-};
+	//PhysicsEngine engine;
+};*/

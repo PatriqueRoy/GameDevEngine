@@ -29,7 +29,6 @@
     <ClCompile Include="..\Source\PhysicsRigidbody.cpp" />
     <ClCompile Include="..\Source\Spaghengine.cpp" />
     <ClCompile Include="..\Source\TransformComponent.cpp" />
-    <ClCompile Include="AudioComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AudioComponent.h" />
@@ -42,7 +41,6 @@
     <ClInclude Include="..\Source\Spaghengine.h" />
     <ClInclude Include="..\Source\TransformComponent.h" />
     <ClInclude Include="..\Source\windowHandle.h" />
-    <ClInclude Include="AudioComponent.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>

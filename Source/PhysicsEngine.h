@@ -7,7 +7,7 @@
 #include <algorithm>
 #include <numeric>
 
-
+/*
 class PhysicsEngine
 {
 public:
@@ -31,4 +31,4 @@ private:
 	void PositionalCorrection(CollisionPair c);
 	void UpdatePhysics();
 	void FixedUpdate();
-};
+};*/

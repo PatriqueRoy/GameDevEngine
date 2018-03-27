@@ -1,6 +1,6 @@
 #include "PhysicsEngine.h"
 
-
+/*
 void PhysicsEngine::AddRigidBody(PhysicsRigidbody rigidBody)
 {
 	rigidBodies.push_front(rigidBody);
@@ -153,3 +153,4 @@ void PhysicsEngine::FixedUpdate()
 {
 	UpdatePhysics();
 }
+*/
