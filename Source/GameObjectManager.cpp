@@ -15,10 +15,24 @@ void GameObjectManager::Start() {
 	}*/
 }
 
-void GameObjectManager::Update(float msec) {
+void GameObjectManager::Update(float msec, sf::RenderWindow *window) {
+	window->clear();
 	for (std::map<int, GameObject*>::iterator i = objects.begin(); i != objects.end(); ++i) {
-		(i->second)->Update(msec);
+		(i->second)->Update(msec, window);
 	}
+	window->display();
+}
+
+GameObject* GameObjectManager::returnObject(int index) {
+	for (std::map<int, GameObject*>::iterator i = objects.begin(); i != objects.end(); ++i) {
+		if (i->first == index) {
+			return i->second;
+		}
+	}
+}
+
+int GameObjectManager::endIndex() {
+	return nextObjectID;
 }
 
 GameObject* GameObjectManager::CreateObject()

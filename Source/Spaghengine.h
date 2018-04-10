@@ -1,6 +1,7 @@
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include "windowHandle.h"
+#include "GameObjectManager.h"
 
 class Spaghengine
 {
@@ -18,4 +19,5 @@ private:
 	static GameState _gameState;
 	static float currentTime;
 	static float deltaTime;
+	static GameObjectManager objectManager;
 };

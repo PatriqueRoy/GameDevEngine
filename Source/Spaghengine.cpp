@@ -3,6 +3,7 @@
 #include <iostream>
 #include "TransformComponent.h"
 
+GameObjectManager Spaghengine::objectManager = GameObjectManager();
 Spaghengine::GameState Spaghengine::_gameState = Spaghengine::Uninitialized;
 float Spaghengine::currentTime = 0.0;
 float Spaghengine::deltaTime = 0.0;
@@ -18,19 +19,15 @@ void Spaghengine::Initialize(void)
 	if (!init) {
 		exit;
 	}
+	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 
-	sf::Texture texture;
+	GameObject* splash = objectManager.CreateObject();
+	splash->createSprite("theThing.png");
+	splash->getSprite()->setScale(sf::Vector2f(1.5f, 1.5));
+	splash->getSprite()->setPosition(sf::Vector2f(0, 50));
 
-	if (texture.loadFromFile("theThing.png") != true) {
-		std::cout << "Bad Load" << std::endl;
-		return;
-	}
+	splash->drawSprite(win);
 
-	sf::Sprite sprite(texture);
-
-	sf::RenderWindow* win = windowHandle::Instance()->getWindow();//this must be called in any function you wanna mess with the window in, creates a reference to the main window
-
-	win->draw(sprite);
 	win->display();
 
 	_gameState = ShowingSplash;
@@ -39,6 +36,8 @@ void Spaghengine::Initialize(void)
 	while (_gameState == ShowingSplash) {
 		while (win->pollEvent(event)) {
 			if (event.type == sf::Event::EventType::KeyPressed || event.type == sf::Event::EventType::MouseButtonPressed || event.type == sf::Event::EventType::Closed) {
+				std::cout << "done splash" << std::endl;
+				splash->isDrawn = false;
 				return;
 			}
 
@@ -48,18 +47,14 @@ void Spaghengine::Initialize(void)
 
 void Spaghengine::Start(void)
 {
-	sf::Texture texture;
-
-	if (texture.loadFromFile("thumb.png") != true) {//TEMP to show changing out of splash screen
-		std::cout << "Bad Load" << std::endl;
-		return;
-	}
-
-	sf::Sprite sprite(texture);
-
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 
-	win->draw(sprite);
+	GameObject* thumb = objectManager.CreateObject();
+	thumb->createSprite("thumb.png");
+	thumb->getSprite()->setScale(sf::Vector2f(0.1f, 0.1f));
+	thumb->getSprite()->setPosition(sf::Vector2f(500, 50));
+	thumb->drawSprite(win);
+
 	win->display();
 
 	_gameState = Spaghengine::Playing;
@@ -72,6 +67,7 @@ void Spaghengine::Start(void)
 
 void Spaghengine::GameLoop(void) 
 {
+	std::cout << "game loop" << std::endl;
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 	masterClock.restart();
 
@@ -84,6 +80,8 @@ void Spaghengine::GameLoop(void)
 		//delta time (time between frames)
 		sf::Time dt = deltaClock.restart();
 		deltaTime = dt.asSeconds();
+
+		objectManager.Update(deltaTime, win);
 
 		sf::Event event;
 		while (win->pollEvent(event))
