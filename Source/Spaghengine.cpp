@@ -114,6 +114,9 @@ void Spaghengine::GameLoop(void)
 		xOffset += block->getSprite()->getTexture()->getSize().x;
 	}
 
+	GameObject* paddelRef = objectManager.returnObject(1);
+	GameObject* ballRef = objectManager.returnObject(2);
+
 	while (win->isOpen())
 	{
 		//time since start of program
@@ -124,9 +127,6 @@ void Spaghengine::GameLoop(void)
 		sf::Time dt = deltaClock.restart();
 		deltaTime = dt.asSeconds();
 
-		GameObject* paddelRef = objectManager.returnObject(1);
-		GameObject* ballRef = objectManager.returnObject(2);
-
 		if (ballRef->getSprite()->getGlobalBounds().intersects(paddelRef->getSprite()->getGlobalBounds())) 
 		{
 			float tempYVel = ballRef->getTransform()->velocity.y;
@@ -135,18 +135,16 @@ void Spaghengine::GameLoop(void)
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
-			GameObject* temp = objectManager.returnObject(1);
-			float tempX = temp->getTransform()->t_position.x;
+			float tempX = paddelRef->getTransform()->t_position.x;
 			if (tempX >= 0) {
-				temp->getTransform()->t_position = sf::Vector2f(tempX -= 0.1f, 700);
+				paddelRef->getTransform()->t_position = sf::Vector2f(tempX -= 0.1f, 700);
 			}
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
-			GameObject* temp = objectManager.returnObject(1);
-			float tempX = temp->getTransform()->t_position.x;
+			float tempX = paddelRef->getTransform()->t_position.x;
 			if (tempX <= win->getSize().x) {
-				temp->getTransform()->t_position = sf::Vector2f(tempX += 0.1f, 700);
+				paddelRef->getTransform()->t_position = sf::Vector2f(tempX += 0.1f, 700);
 			}
 		}
 
