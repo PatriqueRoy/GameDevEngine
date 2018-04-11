@@ -1,5 +1,5 @@
 #include "TransformComponent.h"
-
+/*
 void  TransformComponent::Awake() {
 	sf::Transform trans;
 	trans.translate(t_position.x, t_position.y);
@@ -22,4 +22,4 @@ void TransformComponent::Update() {
 	transform = trans;
 }
 
-void TransformComponent::LateUpdate() {}
+void TransformComponent::LateUpdate() {}*/

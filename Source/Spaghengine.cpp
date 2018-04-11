@@ -23,8 +23,8 @@ void Spaghengine::Initialize(void)
 
 	GameObject* splash = objectManager.CreateObject();
 	splash->createSprite("theThing.png");
-	splash->getSprite()->setScale(sf::Vector2f(1.5f, 1.5));
-	splash->getSprite()->setPosition(sf::Vector2f(0, 50));
+	splash->getTransform()->t_position = sf::Vector2f(0, 50);
+	splash->getTransform()->t_scale = sf::Vector2f(1.5f, 1.5f);
 
 	splash->drawSprite(win);
 
@@ -40,7 +40,6 @@ void Spaghengine::Initialize(void)
 				splash->isDrawn = false;
 				return;
 			}
-
 		}
 	}
 }
@@ -51,8 +50,12 @@ void Spaghengine::Start(void)
 
 	GameObject* thumb = objectManager.CreateObject();
 	thumb->createSprite("thumb.png");
-	thumb->getSprite()->setScale(sf::Vector2f(0.1f, 0.1f));
-	thumb->getSprite()->setPosition(sf::Vector2f(500, 50));
+	thumb->getTransform()->t_position = sf::Vector2f(500, 675);
+	thumb->getTransform()->t_scale = sf::Vector2f(0.1f, 0.1f);
+	//setting proper origin
+	float xCenter = thumb->getSprite()->getTexture()->getSize().x / 2;
+	float yCenter = thumb->getSprite()->getTexture()->getSize().y / 2;
+	thumb->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
 	thumb->drawSprite(win);
 
 	win->display();
@@ -80,6 +83,22 @@ void Spaghengine::GameLoop(void)
 		//delta time (time between frames)
 		sf::Time dt = deltaClock.restart();
 		deltaTime = dt.asSeconds();
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
+			GameObject* temp = objectManager.returnObject(1);
+			float tempX = temp->getTransform()->t_position.x;
+			if (tempX >= 0) {
+				temp->getTransform()->t_position = sf::Vector2f(tempX -= 0.1f, 675);
+			}
+		}
+
+		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
+			GameObject* temp = objectManager.returnObject(1);
+			float tempX = temp->getTransform()->t_position.x;
+			if (tempX <= win->getSize().x) {
+				temp->getTransform()->t_position = sf::Vector2f(tempX += 0.1f, 675);
+			}
+		}
 
 		objectManager.Update(deltaTime, win);
 

@@ -18,15 +18,8 @@ void GameObject::AddComponent(BaseComponent* c) {
 }
 
 void GameObject::Awake() {
-	if (parent) {
-		//This node has a parent...  
-		World_Transform = parent->World_Transform * Local_transform.transform;
-	}
-	else
-	{
-		//Root node, world transform is local transform!
-		World_Transform = Local_transform.transform;
-	}
+	updateSpriteTransform();
+
 	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
 	{
 		(*i)->Awake();
@@ -34,40 +27,48 @@ void GameObject::Awake() {
 }
 
 void GameObject::Start() {
-	if (parent) {
-		//This node has a parent...  
-		World_Transform = parent->World_Transform * Local_transform.transform;
-	}
-	else
-	{
-		//Root node, world transform is local transform!
-		World_Transform = Local_transform.transform;
-	}
+	updateSpriteTransform();
+
 	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
 	{
 		(*i)->Start();
 	}
 }
 
-
 void GameObject::Update(float msec, sf::RenderWindow *window) {
 	drawSprite(window);
 
-	if (parent) {
-		//This node has a parent...  
-		World_Transform = parent->World_Transform * Local_transform.transform;
-	}
-	else
-	{
-		//Root node, world transform is local transform!
-		World_Transform = Local_transform.transform;
-	}
+	//updating children if present
 	for(std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
 	{
 		(*i)->Update(msec, window);
 	}
 }
 
+void GameObject::updateSpriteTransform() {
+	if (parent) {
+		//This node has a parent...  
+		World_Transform = TransformMultiply(parent->World_Transform, Local_Transform);
+	}
+	else
+	{
+		//Root node, world transform is local transform!
+		World_Transform = Local_Transform;
+	}
+
+	float tempX = World_Transform.t_position.x;
+	float tempY = World_Transform.t_position.y;
+	objectSprite.setPosition(tempX, tempY);
+
+	float tempScaleX = World_Transform.t_scale.x;
+	float tempScaleY = World_Transform.t_scale.y;
+	objectSprite.setScale(tempScaleX, tempScaleY);
+
+	float tempRot = World_Transform.t_rotation;
+	objectSprite.setRotation(tempRot);
+}
+
+//Initilizing sprite/texture
 void GameObject::createSprite(std::string fileName) {
 	if (objectTex.loadFromFile(fileName) != true) {//TEMP to show changing out of splash screen
 		std::cout << "Bad Load" << std::endl;
@@ -77,7 +78,10 @@ void GameObject::createSprite(std::string fileName) {
 	objectSprite.setTexture(objectTex);
 }
 
+//drawing sprite
 void GameObject::drawSprite(sf::RenderWindow *window) {
+	updateSpriteTransform();
+
 	if (checkForParent()) {
 		if (parent->isDrawn) {
 			window->draw(objectSprite);

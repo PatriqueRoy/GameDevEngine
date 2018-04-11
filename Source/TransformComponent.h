@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseComponent.h"
 #include <SFML\Graphics\Transform.hpp>
-
+/*
 struct Vector2
 {
 	Vector2() : x(0.0f), y(0.0f){}
@@ -28,19 +28,26 @@ struct Vector2
 	inline const Vector2 Vector2::operator * (float v) const { return Vector2(x * v, y * v); }
 	inline const Vector2 Vector2::operator / (float v) const { return Vector2(x / v, y / v); }
 
-};
+};*/
 
 class TransformComponent : public BaseComponent {
 public:
+	/*
 	void Awake();
 	void Start();
 	void Update();
-	void LateUpdate();
-
-	Vector2 t_position;
+	void LateUpdate();*/
+	float xPos;
+	float yPos;
+	sf::Vector2f t_position;
 	float t_rotation;
-	Vector2 t_scale;
+	sf::Vector2f t_scale;
 
-	sf::Transform transform;
-	const float* matrix = transform.getMatrix();
+	void setPosition(float x, float y) {
+		xPos = x;
+		yPos = y;
+	}
+
+	//sf::Transform transform;
+	//const float* matrix = transform.getMatrix();
 };
