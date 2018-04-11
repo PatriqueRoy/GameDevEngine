@@ -1,13 +1,6 @@
 #include "GameObject.h"
 #include <iostream>
 
-/*GameObject::~GameObject(
-	void
-) {
-	for(unsigned int i = 0; i< children.size(); i++){
-		delete	children[i];
-	}
-}*/
 void GameObject::AddChild(GameObject* s) {
 	children.push_back(s);
 	s->parent =	this;
@@ -81,7 +74,7 @@ void GameObject::updateSpriteTransform(sf::RenderWindow *window) {
 
 //Initilizing sprite/texture
 void GameObject::createSprite(std::string fileName) {
-	if (objectTex.loadFromFile(fileName) != true) {//TEMP to show changing out of splash screen
+	if (objectTex.loadFromFile(fileName) != true) {
 		std::cout << "Bad Load" << std::endl;
 		return;
 	}

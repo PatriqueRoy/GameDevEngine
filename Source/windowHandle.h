@@ -25,7 +25,6 @@ private:
 	static windowHandle* s_pInstance;
 
 	sf::RenderWindow window;
-
 };
 
 //

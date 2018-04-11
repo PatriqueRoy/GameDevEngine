@@ -68,12 +68,13 @@ void Spaghengine::Start(void)
 	}
 }
 
-void Spaghengine::GameLoop(void) 
+void Spaghengine::GameLoop(void)
 {
 	std::cout << "game loop" << std::endl;
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 	masterClock.restart();
 
+	//Setting Ball data
 	GameObject* ball = objectManager.CreateObject();
 	ball->createSprite("ballBlue.png");
 	ball->getTransform()->t_position = sf::Vector2f(500, 350);
@@ -81,8 +82,35 @@ void Spaghengine::GameLoop(void)
 	float xCenter = ball->getSprite()->getTexture()->getSize().x / 2;
 	float yCenter = ball->getSprite()->getTexture()->getSize().y / 2;
 	ball->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
-
+	ball->setName("ball");
 	ball->getTransform()->velocity = sf::Vector2f(0.075f, 0.075f);
+
+	//adding blocks
+	GameObject* block;
+
+	float xOffset = 350;
+	
+	//number of colums
+	for (int i = 0; i < 8; i++)
+	{
+		float yOffset = 150;
+		//numbers of rows
+		for (int j = 0; j < 2; j++)
+		{
+			block = objectManager.CreateObject();
+			//default block settings
+			block->createSprite("rectBlock.png");
+			block->getTransform()->t_scale = sf::Vector2f(1.0f, 1);
+			float xCenter = block->getSprite()->getTexture()->getSize().x / 2;
+			float yCenter = block->getSprite()->getTexture()->getSize().y / 2;
+			block->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
+			block->setName("block");
+			//offsets
+			block->getTransform()->t_position = sf::Vector2f(xOffset, yOffset);
+			yOffset += block->getSprite()->getTexture()->getSize().y;
+		}
+		xOffset += block->getSprite()->getTexture()->getSize().x;
+	}
 
 	while (win->isOpen())
 	{

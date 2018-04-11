@@ -74,6 +74,14 @@ class
 			return temp;
 		}
 
+		void setName(std::string name) {
+			objectName = name;
+		}
+
+		std::string getName() {
+			return objectName;
+		}
+
 	protected:	
 		GameObject * parent;
 		int uniqueID;
@@ -83,4 +91,5 @@ class
 		Transform Local_Transform;
 		sf::Texture objectTex;
 		sf::Sprite objectSprite;
+		std::string objectName;
 };

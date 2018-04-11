@@ -15,6 +15,8 @@ public:
 	void Start();
 	void LateUpdate(float msec, sf::RenderWindow *window);
 
+	void checkForCollisions(GameObject* first);
+
 	GameObject* returnObject(int index);
 	int endIndex();
 
