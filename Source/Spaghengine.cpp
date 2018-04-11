@@ -48,15 +48,15 @@ void Spaghengine::Start(void)
 {
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 
-	GameObject* thumb = objectManager.CreateObject();
-	thumb->createSprite("thumb.png");
-	thumb->getTransform()->t_position = sf::Vector2f(500, 675);
-	thumb->getTransform()->t_scale = sf::Vector2f(0.1f, 0.1f);
+	GameObject* paddle = objectManager.CreateObject();
+	paddle->createSprite("paddleRed.png");
+	paddle->getTransform()->t_position = sf::Vector2f(500, 700);
+	paddle->getTransform()->t_scale = sf::Vector2f(1, 1);
 	//setting proper origin
-	float xCenter = thumb->getSprite()->getTexture()->getSize().x / 2;
-	float yCenter = thumb->getSprite()->getTexture()->getSize().y / 2;
-	thumb->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
-	thumb->drawSprite(win);
+	float xCenter = paddle->getSprite()->getTexture()->getSize().x / 2;
+	float yCenter = paddle->getSprite()->getTexture()->getSize().y / 2;
+	paddle->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
+	paddle->drawSprite(win);
 
 	win->display();
 
@@ -74,6 +74,16 @@ void Spaghengine::GameLoop(void)
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 	masterClock.restart();
 
+	GameObject* ball = objectManager.CreateObject();
+	ball->createSprite("ballBlue.png");
+	ball->getTransform()->t_position = sf::Vector2f(500, 350);
+	ball->getTransform()->t_scale = sf::Vector2f(1, 1);
+	float xCenter = ball->getSprite()->getTexture()->getSize().x / 2;
+	float yCenter = ball->getSprite()->getTexture()->getSize().y / 2;
+	ball->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
+
+	ball->getTransform()->velocity = sf::Vector2f(0.1f, 0.1f);
+
 	while (win->isOpen())
 	{
 		//time since start of program
@@ -88,7 +98,7 @@ void Spaghengine::GameLoop(void)
 			GameObject* temp = objectManager.returnObject(1);
 			float tempX = temp->getTransform()->t_position.x;
 			if (tempX >= 0) {
-				temp->getTransform()->t_position = sf::Vector2f(tempX -= 0.1f, 675);
+				temp->getTransform()->t_position = sf::Vector2f(tempX -= 0.1f, 700);
 			}
 		}
 
@@ -96,7 +106,7 @@ void Spaghengine::GameLoop(void)
 			GameObject* temp = objectManager.returnObject(1);
 			float tempX = temp->getTransform()->t_position.x;
 			if (tempX <= win->getSize().x) {
-				temp->getTransform()->t_position = sf::Vector2f(tempX += 0.1f, 675);
+				temp->getTransform()->t_position = sf::Vector2f(tempX += 0.1f, 700);
 			}
 		}
 

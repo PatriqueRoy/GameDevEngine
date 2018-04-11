@@ -48,7 +48,7 @@ void GameObject::Update(float msec, sf::RenderWindow *window) {
 void GameObject::updateSpriteTransform() {
 	if (parent) {
 		//This node has a parent...  
-		World_Transform = TransformMultiply(parent->World_Transform, Local_Transform);
+		World_Transform = TransformAdd(parent->World_Transform, Local_Transform);
 	}
 	else
 	{
@@ -56,8 +56,12 @@ void GameObject::updateSpriteTransform() {
 		World_Transform = Local_Transform;
 	}
 
+	World_Transform.t_position = sf::Vector2f(World_Transform.t_position.x + World_Transform.velocity.x, World_Transform.t_position.y + World_Transform.velocity.y);
+	std::cout << World_Transform.t_position.x << std::endl;
+
 	float tempX = World_Transform.t_position.x;
 	float tempY = World_Transform.t_position.y;
+
 	objectSprite.setPosition(tempX, tempY);
 
 	float tempScaleX = World_Transform.t_scale.x;

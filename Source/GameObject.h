@@ -10,6 +10,7 @@ public:
 	sf::Vector2f t_position;
 	float t_rotation;
 	sf::Vector2f t_scale;
+	sf::Vector2f velocity;
 };
 
 class
@@ -58,16 +59,16 @@ class
 			return &Local_Transform;
 		}
 
-		Transform TransformMultiply(Transform a, Transform b) {
+		Transform TransformAdd(Transform a, Transform b) {
 			Transform temp;
-			float tempX = a.t_position.x * b.t_position.x;
-			float tempY = a.t_position.y * b.t_position.y;
+			float tempX = a.t_position.x + b.t_position.x;
+			float tempY = a.t_position.y + b.t_position.y;
 			temp.t_position = sf::Vector2f(tempX, tempY);
 
-			temp.t_rotation = a.t_rotation * b.t_rotation;
+			temp.t_rotation = a.t_rotation + b.t_rotation;
 
-			float tempXScale = a.t_scale.x * b.t_scale.x;
-			float tempYScale = a.t_scale.y * b.t_scale.y;
+			float tempXScale = a.t_scale.x + b.t_scale.x;
+			float tempYScale = a.t_scale.y + b.t_scale.y;
 			temp.t_scale = sf::Vector2f(tempXScale, tempYScale);
 
 			return temp;
