@@ -42,7 +42,7 @@ class
 		void Awake();
 		void Start();
 
-		void updateSpriteTransform();
+		void updateSpriteTransform(sf::RenderWindow *window);
 
 		void AddComponent(BaseComponent* component);
 

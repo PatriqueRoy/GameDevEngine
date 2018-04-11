@@ -82,7 +82,7 @@ void Spaghengine::GameLoop(void)
 	float yCenter = ball->getSprite()->getTexture()->getSize().y / 2;
 	ball->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
 
-	ball->getTransform()->velocity = sf::Vector2f(0.1f, 0.1f);
+	ball->getTransform()->velocity = sf::Vector2f(0.075f, 0.075f);
 
 	while (win->isOpen())
 	{
@@ -93,6 +93,15 @@ void Spaghengine::GameLoop(void)
 		//delta time (time between frames)
 		sf::Time dt = deltaClock.restart();
 		deltaTime = dt.asSeconds();
+
+		GameObject* paddelRef = objectManager.returnObject(1);
+		GameObject* ballRef = objectManager.returnObject(2);
+
+		if (ballRef->getSprite()->getGlobalBounds().intersects(paddelRef->getSprite()->getGlobalBounds())) 
+		{
+			float tempYVel = ballRef->getTransform()->velocity.y;
+			ballRef->getTransform()->velocity = sf::Vector2f(ballRef->getTransform()->velocity.x, tempYVel * -1);
+		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 			GameObject* temp = objectManager.returnObject(1);

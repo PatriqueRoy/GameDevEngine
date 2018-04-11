@@ -18,8 +18,6 @@ void GameObject::AddComponent(BaseComponent* c) {
 }
 
 void GameObject::Awake() {
-	updateSpriteTransform();
-
 	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
 	{
 		(*i)->Awake();
@@ -27,8 +25,6 @@ void GameObject::Awake() {
 }
 
 void GameObject::Start() {
-	updateSpriteTransform();
-
 	for (std::vector<GameObject*>::iterator i = children.begin(); i != children.end(); ++i)
 	{
 		(*i)->Start();
@@ -45,7 +41,9 @@ void GameObject::Update(float msec, sf::RenderWindow *window) {
 	}
 }
 
-void GameObject::updateSpriteTransform() {
+void GameObject::updateSpriteTransform(sf::RenderWindow *window) {
+	Local_Transform.t_position = sf::Vector2f(Local_Transform.t_position.x + Local_Transform.velocity.x, Local_Transform.t_position.y + Local_Transform.velocity.y);
+
 	if (parent) {
 		//This node has a parent...  
 		World_Transform = TransformAdd(parent->World_Transform, Local_Transform);
@@ -56,8 +54,17 @@ void GameObject::updateSpriteTransform() {
 		World_Transform = Local_Transform;
 	}
 
-	World_Transform.t_position = sf::Vector2f(World_Transform.t_position.x + World_Transform.velocity.x, World_Transform.t_position.y + World_Transform.velocity.y);
-	std::cout << World_Transform.t_position.x << std::endl;
+	if (Local_Transform.velocity.x > 0 || Local_Transform.velocity.y > 0 || Local_Transform.velocity.x < 0 || Local_Transform.velocity.y < 0)
+	{
+		if (World_Transform.t_position.x <= 0 || World_Transform.t_position.x >= window->getSize().x) {
+			float tempXVel = Local_Transform.velocity.x;
+			Local_Transform.velocity = sf::Vector2f(tempXVel * -1, Local_Transform.velocity.y);
+		}
+		if (World_Transform.t_position.y <= 0 || World_Transform.t_position.y >= window->getSize().y) {
+			float tempYVel = Local_Transform.velocity.y;
+			Local_Transform.velocity = sf::Vector2f(Local_Transform.velocity.x, tempYVel * -1);
+		}
+	}
 
 	float tempX = World_Transform.t_position.x;
 	float tempY = World_Transform.t_position.y;
@@ -84,7 +91,7 @@ void GameObject::createSprite(std::string fileName) {
 
 //drawing sprite
 void GameObject::drawSprite(sf::RenderWindow *window) {
-	updateSpriteTransform();
+	updateSpriteTransform(window);
 
 	if (checkForParent()) {
 		if (parent->isDrawn) {
