@@ -1,23 +1,17 @@
-#pragma once
 #include "..\Source\BaseComponent.h"
 #include <SFML\Audio.hpp>
 #include <iostream>
 #include <string>
 
 
-class AudioComponent : public BaseComponent {
+class AudioComponent {
 public:
-	void Awake();
-	void Start();
-	void Update();
-	void LateUpdate();
+	AudioComponent() {};
 
-	void playSound(const std::string& filename);
-	void playMusic(const std::string& filename);
+	void playSound(std::string filename, int vol);
+	void playMusic(std::string filename, int vol);
 
-	
-	std::string& filename;
-
-	sf::SoundBuffer buffer;
-	sf::Sound sound;
+	static sf::SoundBuffer buffer;
+	static sf::Sound sound;
+	static sf::Music music;
 };

@@ -4,6 +4,7 @@
 #include <map>
 #include <list>
 #include <iterator>
+#include "AudioComponent.h"
 
 class GameObjectManager
 {
@@ -19,6 +20,8 @@ public:
 
 	GameObject* returnObject(int index);
 	int endIndex();
+
+	static AudioComponent audioManager;
 
 private:
 	std::map<int, GameObject*> objects;

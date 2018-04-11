@@ -1,60 +1,35 @@
 #include "AudioComponent.h"
 
-/*
-void AudioComponent::Awake()
+sf::SoundBuffer AudioComponent::buffer;
+sf::Sound AudioComponent::sound;
+sf::Music AudioComponent::music;
+
+void AudioComponent::playSound(std::string filename, int vol)
 {
-	sf::SoundBuffer buffer;
-	if (!buffer.loadFromFile("sound.wav"))
+	if (!buffer.loadFromFile(filename))
 	{
+		std::cout << "bad load" << std::endl;
 		return;
 	}
 
-	sf::Music music;
-	if (!music.openFromFile("sound.wav"))
-	{
-		return;
-	}
-}
-
-
-void AudioComponent::Update()
-{
-	sf::SoundBuffer buffer;
-	if (!buffer.loadFromFile("sound.wav"))
-	{
-		return;
-	}
-
-	sf::Music music;
-	if (!music.openFromFile("sound.wav"))
-	{
-		return;
-	}
-}
-
-void playSound(const std::string& filename)
-{
-	// Load a sound buffer from a wav file
-	sf::SoundBuffer buffer;
-	if (!buffer.loadFromFile("resources/" + filename))
-		return;
-
-	// Create a sound instance and play it
-	sf::Sound sound(buffer);
+	sound.setBuffer(buffer);
+	sound.setVolume(vol);
 	sound.play();
-
 }
-
 
 ////////////////////////////////////////////////////////////
-/// Play a music
+/// Play an music
 ///
 ////////////////////////////////////////////////////////////
-void playMusic(const std::string& filename)
+void AudioComponent::playMusic(std::string filename, int vol)
 {
-	// Load an ogg music file
-	sf::Music music;
-	if (!music.openFromFile("resources/" + filename))
+	if (!music.openFromFile(filename)) 
+	{
+		std::cout << "bad load" << std::endl;
 		return;
+	}
 
-}*/
+	music.setVolume(vol);
+	music.setLoop(true);
+	music.play();
+}

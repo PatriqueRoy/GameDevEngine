@@ -38,6 +38,8 @@ void Spaghengine::Initialize(void)
 			if (event.type == sf::Event::EventType::KeyPressed || event.type == sf::Event::EventType::MouseButtonPressed || event.type == sf::Event::EventType::Closed) {
 				std::cout << "done splash" << std::endl;
 				splash->isDrawn = false;
+				objectManager.audioManager.playSound("boop.wav", 35);
+				objectManager.audioManager.playMusic("music.wav", 30);
 				return;
 			}
 		}
@@ -77,7 +79,7 @@ void Spaghengine::GameLoop(void)
 	//Setting Ball data
 	GameObject* ball = objectManager.CreateObject();
 	ball->createSprite("ballBlue.png");
-	ball->getTransform()->t_position = sf::Vector2f(500, 350);
+	ball->getTransform()->t_position = sf::Vector2f(300, 350);
 	ball->getTransform()->t_scale = sf::Vector2f(1, 1);
 	float xCenter = ball->getSprite()->getTexture()->getSize().x / 2;
 	float yCenter = ball->getSprite()->getTexture()->getSize().y / 2;
@@ -129,6 +131,7 @@ void Spaghengine::GameLoop(void)
 		{
 			float tempYVel = ballRef->getTransform()->velocity.y;
 			ballRef->getTransform()->velocity = sf::Vector2f(ballRef->getTransform()->velocity.x, tempYVel * -1);
+			objectManager.audioManager.playSound("boop.wav", 35);
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {

@@ -2,10 +2,10 @@
 C:\Program Files (x86)\Microsoft Visual Studio\2017\Community\Common7\IDE\VC\VCTargets\Microsoft.CppBuild.targets(377,5): warning MSB8004: Output Directory does not end with a trailing slash.  This build instance will add the slash as it is required to allow proper evaluation of the Output Directory.
   Spaghengine.cpp
 c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(20): warning C4551: function call missing argument list
-c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(56): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(57): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(82): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(83): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(113): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
-c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(114): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(58): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(59): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(84): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(85): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(106): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
+c:\users\harrison\documents\github\the-spaghengine\source\spaghengine.cpp(107): warning C4244: 'initializing': conversion from 'unsigned int' to 'float', possible loss of data
   The Spaghengine.vcxproj -> C:\Users\Harrison\Documents\GitHub\The-Spaghengine\\Game\The SpaghengineWin32Debug\The SpaghengineWin32Debug.exe
