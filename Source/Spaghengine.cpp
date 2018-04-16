@@ -119,7 +119,7 @@ void Spaghengine::Start(void)
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 
 	objectManager.audioManager.playSound("boop.wav", 35);
-	objectManager.audioManager.playMusic("music.wav", 30);
+	objectManager.audioManager.playMusic("music.wav", 15);
 
 	for (int i = 1; i < objectManager.endIndex(); i++) {
 		objectManager.returnObject(i)->isDrawn = true;
