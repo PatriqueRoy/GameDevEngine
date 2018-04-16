@@ -11,6 +11,7 @@
     <ClCompile Include="..\Source\PhysicsRigidbody.cpp" />
     <ClCompile Include="..\Source\Spaghengine.cpp" />
     <ClCompile Include="..\Source\TransformComponent.cpp" />
+    <ClCompile Include="..\Source\tinyxml2.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Source\AudioComponent.h" />
@@ -23,5 +24,6 @@
     <ClInclude Include="..\Source\Spaghengine.h" />
     <ClInclude Include="..\Source\TransformComponent.h" />
     <ClInclude Include="..\Source\windowHandle.h" />
+    <ClInclude Include="..\Source\tinyxml2.h" />
   </ItemGroup>
 </Project>

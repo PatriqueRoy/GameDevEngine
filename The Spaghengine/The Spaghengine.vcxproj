@@ -28,6 +28,7 @@
     <ClCompile Include="..\Source\PhysicsEngine.cpp" />
     <ClCompile Include="..\Source\PhysicsRigidbody.cpp" />
     <ClCompile Include="..\Source\Spaghengine.cpp" />
+    <ClCompile Include="..\Source\tinyxml2.cpp" />
     <ClCompile Include="..\Source\TransformComponent.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -39,6 +40,7 @@
     <ClInclude Include="..\Source\PhysicsEngine.h" />
     <ClInclude Include="..\Source\PhysicsRigidbody.h" />
     <ClInclude Include="..\Source\Spaghengine.h" />
+    <ClInclude Include="..\Source\tinyxml2.h" />
     <ClInclude Include="..\Source\TransformComponent.h" />
     <ClInclude Include="..\Source\windowHandle.h" />
   </ItemGroup>

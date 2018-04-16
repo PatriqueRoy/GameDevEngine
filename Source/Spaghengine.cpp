@@ -10,6 +10,78 @@ float Spaghengine::deltaTime = 0.0;
 sf::Clock masterClock;
 sf::Clock deltaClock;
 
+void Spaghengine::MakeDocument() {
+	tinyxml2::XMLDocument xmlDoc;
+	tinyxml2::XMLNode * pRoot = xmlDoc.NewElement("Root");
+	xmlDoc.InsertFirstChild(pRoot);
+
+	for (int i = 0; i < objectManager.endIndex(); i++)
+	{
+		tinyxml2::XMLElement * pElement = xmlDoc.NewElement("GameObject");
+		pElement->SetAttribute("objectIndex", i);
+		pElement->SetAttribute("objName", objectManager.returnObject(i)->getName().c_str());
+		pElement->SetAttribute("spriteName", objectManager.returnObject(i)->texFilePath.c_str());
+		pElement->SetAttribute("xPos", objectManager.returnObject(i)->getTransform()->t_position.x);
+		pElement->SetAttribute("yPos", objectManager.returnObject(i)->getTransform()->t_position.y);
+		pElement->SetAttribute("rot", objectManager.returnObject(i)->getTransform()->t_rotation);
+		pElement->SetAttribute("xScale", objectManager.returnObject(i)->getTransform()->t_scale.x);
+		pElement->SetAttribute("yScale", objectManager.returnObject(i)->getTransform()->t_scale.y);
+		pElement->SetAttribute("xVel", objectManager.returnObject(i)->getTransform()->velocity.x);
+		pElement->SetAttribute("yVel", objectManager.returnObject(i)->getTransform()->velocity.y);
+		pRoot->InsertEndChild(pElement);
+	}
+
+	xmlDoc.SaveFile("SavedData.xml");
+}
+
+void Spaghengine::ReadDocument() {
+	tinyxml2::XMLDocument xmlDoc;
+	tinyxml2::XMLError eResult = xmlDoc.LoadFile("SavedData.xml");
+
+	tinyxml2::XMLNode * pRoot = xmlDoc.FirstChild();
+
+	tinyxml2::XMLElement * pElement = pRoot->LastChildElement("GameObject");
+
+	//Getting number of elements
+	int endIndex;
+	eResult = pElement->QueryIntAttribute("objectIndex", &endIndex);
+
+	pElement = pRoot->FirstChildElement("GameObject");
+
+	int currentIndex = 0;
+
+	while (currentIndex < endIndex) {
+		const char * spriteName;
+		const char * objName;
+		float xPos, yPos, rot, xScale, yScale, xVel, yVel;
+		eResult = pElement->QueryStringAttribute("spriteName", &spriteName);
+		eResult = pElement->QueryStringAttribute("objName", &objName);
+		eResult = pElement->QueryFloatAttribute("xPos", &xPos);
+		eResult = pElement->QueryFloatAttribute("yPos", &yPos);
+		eResult = pElement->QueryFloatAttribute("rot", &rot);
+		eResult = pElement->QueryFloatAttribute("xScale", &xScale);
+		eResult = pElement->QueryFloatAttribute("yScale", &yScale);
+		eResult = pElement->QueryFloatAttribute("xVel", &xVel);
+		eResult = pElement->QueryFloatAttribute("yVel", &yVel);
+
+		GameObject* obj = objectManager.CreateObject();
+
+		obj->createSprite(spriteName);
+		obj->getTransform()->t_position = sf::Vector2f(xPos, yPos);
+		obj->getTransform()->t_rotation = rot;
+		obj->getTransform()->t_scale = sf::Vector2f(xScale, yScale);
+		float xCenter = obj->getSprite()->getTexture()->getSize().x / 2;
+		float yCenter = obj->getSprite()->getTexture()->getSize().y / 2;
+		obj->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
+		obj->getTransform()->velocity = sf::Vector2f(xVel, yVel);
+		obj->setName(objName);
+		obj->isDrawn = false;
+
+		pElement = pElement->NextSiblingElement("GameObject");
+		eResult = pElement->QueryIntAttribute("objectIndex", &currentIndex);
+	}
+}
+
 void Spaghengine::Initialize(void)
 {
 	if (_gameState != Uninitialized)
@@ -21,12 +93,10 @@ void Spaghengine::Initialize(void)
 	}
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 
-	GameObject* splash = objectManager.CreateObject();
-	splash->createSprite("theThing.png");
-	splash->getTransform()->t_position = sf::Vector2f(0, 50);
-	splash->getTransform()->t_scale = sf::Vector2f(1.5f, 1.5f);
+	ReadDocument();
 
-	splash->drawSprite(win);
+	objectManager.returnObject(0)->isDrawn = true;
+	objectManager.returnObject(0)->drawSprite(win);
 
 	win->display();
 
@@ -37,9 +107,7 @@ void Spaghengine::Initialize(void)
 		while (win->pollEvent(event)) {
 			if (event.type == sf::Event::EventType::KeyPressed || event.type == sf::Event::EventType::MouseButtonPressed || event.type == sf::Event::EventType::Closed) {
 				std::cout << "done splash" << std::endl;
-				splash->isDrawn = false;
-				objectManager.audioManager.playSound("boop.wav", 35);
-				objectManager.audioManager.playMusic("music.wav", 30);
+				objectManager.returnObject(0)->isDrawn = false;
 				return;
 			}
 		}
@@ -50,15 +118,13 @@ void Spaghengine::Start(void)
 {
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 
-	GameObject* paddle = objectManager.CreateObject();
-	paddle->createSprite("paddleRed.png");
-	paddle->getTransform()->t_position = sf::Vector2f(500, 700);
-	paddle->getTransform()->t_scale = sf::Vector2f(1, 1);
-	//setting proper origin
-	float xCenter = paddle->getSprite()->getTexture()->getSize().x / 2;
-	float yCenter = paddle->getSprite()->getTexture()->getSize().y / 2;
-	paddle->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
-	paddle->drawSprite(win);
+	objectManager.audioManager.playSound("boop.wav", 35);
+	objectManager.audioManager.playMusic("music.wav", 30);
+
+	for (int i = 1; i < objectManager.endIndex(); i++) {
+		objectManager.returnObject(i)->isDrawn = true;
+		objectManager.returnObject(i)->drawSprite(win);
+	}
 
 	win->display();
 
@@ -75,44 +141,6 @@ void Spaghengine::GameLoop(void)
 	std::cout << "game loop" << std::endl;
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 	masterClock.restart();
-
-	//Setting Ball data
-	GameObject* ball = objectManager.CreateObject();
-	ball->createSprite("ballBlue.png");
-	ball->getTransform()->t_position = sf::Vector2f(300, 350);
-	ball->getTransform()->t_scale = sf::Vector2f(1, 1);
-	float xCenter = ball->getSprite()->getTexture()->getSize().x / 2;
-	float yCenter = ball->getSprite()->getTexture()->getSize().y / 2;
-	ball->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
-	ball->setName("ball");
-	ball->getTransform()->velocity = sf::Vector2f(0.075f, 0.075f);
-
-	//adding blocks
-	GameObject* block;
-
-	float xOffset = 350;
-	
-	//number of colums
-	for (int i = 0; i < 8; i++)
-	{
-		float yOffset = 150;
-		//numbers of rows
-		for (int j = 0; j < 2; j++)
-		{
-			block = objectManager.CreateObject();
-			//default block settings
-			block->createSprite("rectBlock.png");
-			block->getTransform()->t_scale = sf::Vector2f(1.0f, 1);
-			float xCenter = block->getSprite()->getTexture()->getSize().x / 2;
-			float yCenter = block->getSprite()->getTexture()->getSize().y / 2;
-			block->getSprite()->setOrigin(sf::Vector2f(xCenter, yCenter));
-			block->setName("block");
-			//offsets
-			block->getTransform()->t_position = sf::Vector2f(xOffset, yOffset);
-			yOffset += block->getSprite()->getTexture()->getSize().y;
-		}
-		xOffset += block->getSprite()->getTexture()->getSize().x;
-	}
 
 	GameObject* paddelRef = objectManager.returnObject(1);
 	GameObject* ballRef = objectManager.returnObject(2);

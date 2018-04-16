@@ -2,13 +2,16 @@
 #include <SFML/Graphics.hpp>
 #include "windowHandle.h"
 #include "GameObjectManager.h"
+#include "tinyxml2.h"
 
 class Spaghengine
 {
 public:
 	static void Start();
 	static void Initialize();
-	
+	static void MakeDocument();
+	static void ReadDocument();
+
 private:
 	static bool IsExiting();
 	static void GameLoop();

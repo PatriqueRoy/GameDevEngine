@@ -79,6 +79,8 @@ void GameObject::createSprite(std::string fileName) {
 		return;
 	}
 
+	texFilePath = fileName;
+
 	objectSprite.setTexture(objectTex);
 }
 

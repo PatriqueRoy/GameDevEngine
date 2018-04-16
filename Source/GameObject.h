@@ -21,6 +21,8 @@ class
 
 		int GetObjectID() const { return uniqueID; }
 			
+		std::string texFilePath;
+
 		void SetParent(GameObject& p) {parent = &p;}
 		bool checkForParent() 
 		{

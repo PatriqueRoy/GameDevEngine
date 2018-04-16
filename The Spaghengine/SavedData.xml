@@ -1,0 +1,22 @@
+<Root>
+    <GameObject objectIndex="0" objName="bg" spriteName="theThing.png" xPos="550" yPos="395" rot="0" xScale="1.5" yScale="1.5" xVel="0" yVel="0"/>
+    <GameObject objectIndex="1" objName="paddle" spriteName="paddleRed.png" xPos="500" yPos="700" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="2" objName="ball" spriteName="ballBlue.png" xPos="300" yPos="350" rot="0" xScale="1" yScale="1" xVel="0.075000003" yVel="0.075000003"/>
+    <GameObject objectIndex="3" objName="block" spriteName="rectBlock.png" xPos="350" yPos="150" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="4" objName="block" spriteName="rectBlock.png" xPos="350" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="5" objName="block" spriteName="rectBlock.png" xPos="414" yPos="150" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="6" objName="block" spriteName="rectBlock.png" xPos="414" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="7" objName="block" spriteName="rectBlock.png" xPos="478" yPos="150" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="8" objName="block" spriteName="rectBlock.png" xPos="478" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="9" objName="block" spriteName="rectBlock.png" xPos="542" yPos="150" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="10" objName="block" spriteName="rectBlock.png" xPos="542" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="11" objName="block" spriteName="rectBlock.png" xPos="606" yPos="150" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="12" objName="block" spriteName="rectBlock.png" xPos="606" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="13" objName="block" spriteName="rectBlock.png" xPos="670" yPos="150" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="14" objName="block" spriteName="rectBlock.png" xPos="670" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="15" objName="block" spriteName="rectBlock.png" xPos="734" yPos="150" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="16" objName="block" spriteName="rectBlock.png" xPos="734" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="17" objName="block" spriteName="rectBlock.png" xPos="798" yPos="150" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+    <GameObject objectIndex="18" objName="block" spriteName="rectBlock.png" xPos="798" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/> 
+    <GameObject objectIndex="18" objName="block" spriteName="rectBlock.png" xPos="798" yPos="182" rot="0" xScale="1" yScale="1" xVel="0" yVel="0"/>
+</Root>
