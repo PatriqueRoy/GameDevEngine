@@ -13,7 +13,7 @@ public:
 		return s_pInstance;
 	}
 
-	windowHandle() : window(sf::VideoMode(1024, 768), "Untitled") {}//Initilizing the window
+	windowHandle() : window(sf::VideoMode(410, 650), "Untitled") {}//Initilizing the window
 
 	sf::RenderWindow* getWindow()//referencing the window
 	{

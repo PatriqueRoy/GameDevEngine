@@ -12,6 +12,8 @@ public:
 	static void MakeDocument();
 	static void ReadDocument();
 
+	static int Health;
+
 private:
 	static bool IsExiting();
 	static void GameLoop();

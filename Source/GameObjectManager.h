@@ -21,6 +21,9 @@ public:
 	GameObject* returnObject(int index);
 	int endIndex();
 
+	static int score;
+	static int health;
+
 	static AudioComponent audioManager;
 
 private:

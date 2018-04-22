@@ -118,7 +118,6 @@ void Spaghengine::Start(void)
 {
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 
-	objectManager.audioManager.playSound("boop.wav", 35);
 	objectManager.audioManager.playMusic("music.wav", 15);
 
 	for (int i = 1; i < objectManager.endIndex(); i++) {
@@ -142,11 +141,46 @@ void Spaghengine::GameLoop(void)
 	sf::RenderWindow* win = windowHandle::Instance()->getWindow();
 	masterClock.restart();
 
+	restart:
 	GameObject* paddelRef = objectManager.returnObject(1);
 	GameObject* ballRef = objectManager.returnObject(2);
 
-	while (win->isOpen())
+	for (int i = 1; i < objectManager.endIndex(); i++) {
+		objectManager.returnObject(i)->isDrawn = true;
+		objectManager.returnObject(i)->drawSprite(win);
+	}
+
+	ballRef->getTransform()->t_position = sf::Vector2f(115, 300);
+	objectManager.score = 0;
+	objectManager.health = 3;
+
+	sf::Font font;
+	if (!font.loadFromFile("arial.ttf")) {
+		std::cout << "error" << std::endl;
+	}
+
+	sf::Text scoreText("Score = 0", font);
+	scoreText.setCharacterSize(15);
+	scoreText.setFillColor(sf::Color::White);
+
+	sf::Text healthText("Health: 3", font);
+	healthText.setCharacterSize(15);
+	healthText.setPosition(sf::Vector2f(345, 0));
+	healthText.setFillColor(sf::Color::White);
+
+	while (win->isOpen() && objectManager.health > 0)
 	{
+		int Score = objectManager.score;
+		std::string temp = "Score: " + std::to_string(Score);
+		scoreText.setString(temp);
+
+		int Health = objectManager.health;
+		std::string temp2 = "Health: " + std::to_string(Health);
+		healthText.setString(temp2);
+
+		win->draw(scoreText);
+		win->draw(healthText);
+
 		//time since start of program
 		sf::Time elapsed = masterClock.getElapsedTime();
 		currentTime = elapsed.asSeconds();
@@ -154,6 +188,10 @@ void Spaghengine::GameLoop(void)
 		//delta time (time between frames)
 		sf::Time dt = deltaClock.restart();
 		deltaTime = dt.asSeconds();
+
+		if (ballRef->getTransform()->t_position.y >= win->getSize().y) {
+			objectManager.health--;
+		}
 
 		if (ballRef->getSprite()->getGlobalBounds().intersects(paddelRef->getSprite()->getGlobalBounds())) 
 		{
@@ -165,18 +203,20 @@ void Spaghengine::GameLoop(void)
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Left)) {
 			float tempX = paddelRef->getTransform()->t_position.x;
 			if (tempX >= 0) {
-				paddelRef->getTransform()->t_position = sf::Vector2f(tempX -= 0.1f, 700);
+				paddelRef->getTransform()->t_position = sf::Vector2f(tempX -= 0.2f, 575);
 			}
 		}
 
 		if (sf::Keyboard::isKeyPressed(sf::Keyboard::Right)) {
 			float tempX = paddelRef->getTransform()->t_position.x;
 			if (tempX <= win->getSize().x) {
-				paddelRef->getTransform()->t_position = sf::Vector2f(tempX += 0.1f, 700);
+				paddelRef->getTransform()->t_position = sf::Vector2f(tempX += 0.2f, 575);
 			}
 		}
 
 		objectManager.Update(deltaTime, win);
+
+		win->clear();
 
 		sf::Event event;
 		while (win->pollEvent(event))
@@ -185,6 +225,9 @@ void Spaghengine::GameLoop(void)
 				win->close();
 		}
 	}
+
+	win->clear();
+	goto restart;
 }
 
 bool Spaghengine::IsExiting() {

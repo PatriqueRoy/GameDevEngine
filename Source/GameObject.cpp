@@ -53,7 +53,11 @@ void GameObject::updateSpriteTransform(sf::RenderWindow *window) {
 			float tempXVel = Local_Transform.velocity.x;
 			Local_Transform.velocity = sf::Vector2f(tempXVel * -1, Local_Transform.velocity.y);
 		}
-		if (World_Transform.t_position.y <= 0 || World_Transform.t_position.y >= window->getSize().y) {
+		if (World_Transform.t_position.y <= 0) {
+			float tempYVel = Local_Transform.velocity.y;
+			Local_Transform.velocity = sf::Vector2f(Local_Transform.velocity.x, tempYVel * -1);
+		}
+		if (World_Transform.t_position.y >= window->getSize().y) {
 			float tempYVel = Local_Transform.velocity.y;
 			Local_Transform.velocity = sf::Vector2f(Local_Transform.velocity.x, tempYVel * -1);
 		}
